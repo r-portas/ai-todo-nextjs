@@ -1,0 +1,90 @@
+# App Template
+
+An opinionated template for building web applications, preconfigured with everything needs to start building an idea quickly.
+
+## Using this Template
+
+There are two ways to use this template:
+
+### Through GitHub
+
+1. Open this repo in GitHub
+2. At the top right, click the "Use this template" button
+3. Select "Create a new repository"
+4. Follow the instructions
+
+### Through `create-next-app`
+
+```bash
+bun create next-app@latest --example https://github.com/r-portas/app-template
+```
+
+After cloning the template, you should:
+
+1. Update the `name` field in `package.json` to match your project name, run a `bun install` to update the lockfile.
+2. Update the page title and description in `app/layout.tsx`.
+3. Update the `README.md` file to reflect your project.
+4. Update the top of `AGENT.md` to reflect your project.
+5. Delete the content from `CHANGELOG.md` and add the first entry.
+
+## Other Documentation
+
+- [CHANGELOG.md](./CHANGELOG.md) for the detailed history of the project, update this everytime a feature is completed.
+- [AGENT.md](./AGENT.md) used by AI agents to understand the codebase.
+
+## Tools and Technologies
+
+### Preconfigured
+
+The below tools and technologies are preconfigured in this template:
+
+- [Bun](https://bun.sh/) for the JavaScript runtime, package manager and test runner
+- [Next.js](https://nextjs.org/) for the React framework, using App Router and Typescript
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [shadcn/ui](https://ui.shadcn.com/) for UI components
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) for testing React components
+- [ESLint](https://eslint.org/) for linting
+- [Prettier](https://prettier.io/) for code formatting
+
+### Optional
+
+The following tools aren't preconfigured, but can be added easily:
+
+- [Zod](https://zod.dev/) for schema validation
+- [Drizzle](https://orm.drizzle.team/) with SQLite for the database
+
+## Getting Started
+
+```bash
+# Install dependencies
+bun install
+
+# Run the development server, or run the "Start Dev Server" VSCode task
+bun dev
+
+# Run tests
+bun test
+
+# Update dependencies
+bun update --latest
+```
+
+## Environment Variables
+
+The following environment variables should be configured in a `.env.local` file:
+
+- `ABC`: Description
+
+## Deployment
+
+This template contains a pre-configured `Dockerfile` and `compose.yml` for easy deployment via Docker, which can be ran by running the following command:
+
+```bash
+docker compose up
+```
+
+If these aren't needed, they can be removed by running the following:
+
+```bash
+rm Dockerfile compose.yml
+```
