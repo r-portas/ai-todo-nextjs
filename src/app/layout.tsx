@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 import { fontClassNames } from "./fonts";
-import { AppShell } from "@/components/app-shell";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "App Template",
-  description:
-    "An opinionated template for building web applications, preconfigured with everything needs to start building an idea quickly",
+  title: "AI Todo Next.js",
 };
 
 export default function RootLayout({
@@ -16,9 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${fontClassNames} antialiased dark`}>
-      <body>
-        <AppShell>{children}</AppShell>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

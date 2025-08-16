@@ -1,6 +1,6 @@
-# App Template
+# ai-todo-nodejs
 
-App Template is an opinionated template for building web applications, preconfigured with everything you need to start building an idea quickly.
+A proof-of-concept AI-powered todo list app built using Next.js, to learn how to integrate AI into applications.
 
 ## Architecture
 

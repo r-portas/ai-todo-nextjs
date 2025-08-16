@@ -1,52 +1,58 @@
+import { db, todos } from "@/lib/db";
 import { Typography } from "@/components/ui/typography";
-import { List, ListItem } from "@/components/ui/list";
-import { Link } from "@/components/ui/link";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default function Home() {
+/**
+ * Home page displaying all todos
+ *
+ * @remarks
+ * Server component: fetches todo data directly from the database
+ */
+export default async function Page() {
+  const allTodos = await db.select().from(todos);
+
   return (
-    <div className="m-10 lg:m-40">
-      <Typography variant="h1" className="text-center mb-8">
-        App Template
-      </Typography>
-      <Typography variant="lead" className="text-center mb-16">
-        Welcome to your new app! This template is pre-configured with{" "}
-        <Link href="https://nextjs.org/">Next.js</Link>,{" "}
-        <Link href="https://react.dev/">React</Link>,{" "}
-        <Link href="https://www.typescriptlang.org/">TypeScript</Link>,{" "}
-        <Link href="https://tailwindcss.com/">Tailwind CSS</Link> and{" "}
-        <Link href="https://ui.shadcn.com/">shadcn/ui</Link> components.
-        Everything you need to start building fast.
-      </Typography>
-      <Typography variant="h2">Getting Started</Typography>
-      <List>
-        <ListItem>
-          <strong>Start the dev server:</strong> Run the{" "}
-          <Typography variant="inline-code">Start Dev Server</Typography> VSCode
-          task or run <Typography variant="inline-code">bun dev</Typography>
-        </ListItem>
-        <ListItem>
-          <strong>Build for production:</strong>{" "}
-          <Typography variant="inline-code">bun run build</Typography>
-        </ListItem>
-        <ListItem>
-          <strong>Run tests:</strong>{" "}
-          <Typography variant="inline-code">bun test</Typography>
-        </ListItem>
-        <ListItem>
-          <strong>Format code:</strong>{" "}
-          <Typography variant="inline-code">bun format</Typography>
-        </ListItem>
-        <ListItem>
-          <strong>Add a UI component:</strong>{" "}
-          <Typography variant="inline-code">
-            bun shadcn add &lt;component&gt;
-          </Typography>
-        </ListItem>
-      </List>
-      <Typography variant="muted" className="mt-4">
-        Edit <Typography variant="inline-code">src/app/page.tsx</Typography> to
-        customize this page.
-      </Typography>
-    </div>
+    <main className="container mx-auto max-w-3xl p-6 flex flex-col gap-8">
+      <div className="space-y-2">
+        <Typography variant="h1">Todos</Typography>
+        <Typography variant="muted">
+          A list of all current todos in the database
+        </Typography>
+      </div>
+      <Card>
+        <CardHeader>
+          <CardTitle>All Todos ({allTodos.length})</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {allTodos.length === 0 ? (
+            <Typography variant="muted">No todos yet.</Typography>
+          ) : (
+            <div className="flex flex-col gap-4">
+              {allTodos.map((t) => {
+                const due = t.due?.toLocaleDateString();
+                return (
+                  <div key={t.id}>
+                    <span className="font-medium flex items-center gap-2">
+                      <span
+                        className={`inline-block h-2 w-2 rounded-full ${
+                          t.completed ? "bg-green-500" : "bg-yellow-500"
+                        }`}
+                        aria-label={t.completed ? "Completed" : "Pending"}
+                      />
+                      {t.title}
+                    </span>
+                    <span className="text-xs text-muted-foreground flex gap-2">
+                      <span>Priority: {t.priority}</span>
+                      {due && <span>Due: {due}</span>}
+                      <span>Status: {t.completed ? "Done" : "Open"}</span>
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    </main>
   );
 }
