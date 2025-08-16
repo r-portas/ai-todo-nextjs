@@ -33,3 +33,10 @@ Below is a brief list of the features I'm thinking of adding.
   }
   ```
 - **MCP Integration**
+
+## Setup
+
+1. Setup environment variables, create a `.env.local` with:
+   ```
+   GITHUB_TOKEN=your_github_token
+   ```

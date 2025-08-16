@@ -13,7 +13,9 @@
     "drizzle-kit": "drizzle-kit"
   },
   "dependencies": {
+    "@ai-sdk/openai-compatible": "^1.0.7",
     "@libsql/client": "^0.15.11",
+    "ai": "^5.0.15",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.44.4",
